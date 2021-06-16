@@ -56,16 +56,16 @@ public class Account {
 	public void withdraw(double amount) {
 		balance = balance - amount;		//balance -= amount
 	}
-	public String validateWithdraw(double amount) {
+	public void validateWithdraw(double amount) {
 		
 		if (amount > getWithdrawLimit()) {
-			
-			return "Erro de saque, a quantia excede o limite de saque";
+			//throw corta o metodo
+			throw new RuntimeException("Erro de saque, a quantia excede o limite de saque");
 		}
 		if(amount > getBalance()) {
 			
-			return "Erro de saque, o saldo é insuficiente";
+			throw new RuntimeException("Erro de saque, o saldo é insuficiente");
 		}
-		return null;
+		//return null;
 	}
 }
