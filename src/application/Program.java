@@ -34,18 +34,13 @@ public class Program {
 		
 		//tratamento 1
 		
-		if (amount > acc.getWithdrawLimit()) {
-			
-			System.out.println("Erro de saque, a quantia excede o limite de saque");
-		}
-		else if(amount > acc.getBalance()) {
-			
-			System.out.println("Erro de saque, o limite é insuficiente");
+		String error = acc.validateWithdraw(amount);
+		if (error != null) {
+			System.out.println(error);
 		}
 		else {
-		acc.withdraw(amount);
-		System.out.printf("Novo saldo: %.2f%n", acc.getBalance());
-					
+			acc.withdraw(amount);
+			System.out.printf("Novo saldo: %.2f%n", acc.getBalance());
 		}
 		
 		sc.close();
